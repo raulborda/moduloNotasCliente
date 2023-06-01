@@ -1,7 +1,9 @@
 .wrapper_Cards{
-    margin: 5px;
+    height: 100vh;
+    /* margin: 5px; */
     display: flex;
     justify-content: center;
+    background-color: beige; /* para que se vean las cards*/
 }
 
 .card_Destacado{
