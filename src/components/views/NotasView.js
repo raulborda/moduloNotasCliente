@@ -1,12 +1,14 @@
 import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Drawer, Empty, Row, Timeline } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
+import { GlobalContext } from "../context/GlobalContext";
 
 const NotasView = () => {
 
-    const [showDrawer, setShowDrawer] = useState(false);
+    const { showDrawer, setShowDrawer } = useContext(GlobalContext);
+
 
 
 
@@ -23,7 +25,7 @@ const NotasView = () => {
         <Col xs={24} md={17}>
           <Row>
             <Col xs={24}>
-              <Card title="DESTACADO" className="card_Destacado" extra="0">
+              <Card title="DESTACADO" className="card_Destacado" extra={<span style={{color:"#56b43c", fontWeight:"bold"}} >0</span>}>
                 {/* <Tabs defaultActiveKey="1"> */}
                   {/* <div className="add_wrapper"></div> */}
                   {/* <TabPane

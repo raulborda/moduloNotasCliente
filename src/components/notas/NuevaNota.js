@@ -1,19 +1,30 @@
 import { Button, Col, Form, Radio, Row } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Note from "./Note";
+import { GlobalContext } from "../context/GlobalContext";
 
 const NuevaNota = () => {
+  const { note, setNote, setShowDrawer } = useContext(GlobalContext);
 
-    const [form] = Form.useForm();
-    const [priority, setPriority] = useState(1);
+  const [form] = Form.useForm();
+  const [priority, setPriority] = useState(1);
 
-    const onChangePriority = (v) => {
-        setPriority(Number(v.target.value));
-      };
+  const onChangePriority = (v) => {
+    setPriority(Number(v.target.value));
+  };
 
-    const onFinish = (v) => {
-        console.log(v);
-    }
+  const onFinish = (v) => {
+    const data = {
+      ...v,
+      not_desc: note,
+      not_importancia: priority,
+    };
+
+    console.log(data);
+    setShowDrawer(false);
+    setNote("");
+    form.resetFields();
+  };
 
   return (
     <>

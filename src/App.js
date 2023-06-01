@@ -18,6 +18,8 @@ function App() {
 
   const [note, setNote] = useState("");
 
+  const [showDrawer, setShowDrawer] = useState(false);
+
 
 
 
@@ -26,7 +28,8 @@ function App() {
       value={{
         idUsu, setUsu,
         cliSelect, setCliSelect,
-        note, setNote
+        note, setNote,
+        showDrawer, setShowDrawer,
       }}
     >
       <ConfigProvider
