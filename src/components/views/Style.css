@@ -1,0 +1,16 @@
+.wrapper_Cards{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.card_Destacado{
+    margin-bottom: 20px;
+}
+
+.add {
+	position: absolute;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: 1;
+}

@@ -4,6 +4,7 @@ import { GlobalContext } from "./components/context/GlobalContext";
 import esES from "antd/lib/locale/es_ES";
 import Notas from "./components/notas/Notas";
 import { useState } from "react";
+import NotasView from "./components/views/NotasView";
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
           },
         }}
       >
-        <Notas />
+        <NotasView />
       </ConfigProvider>
     </GlobalContext.Provider>
   );
