@@ -2,6 +2,7 @@ import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Drawer, Empty, Row, Timeline } from "antd";
 import React, { useState } from "react";
 import "./Style.css";
+import NuevaNota from "../notas/NuevaNota";
 
 const NotasView = () => {
 
@@ -9,7 +10,7 @@ const NotasView = () => {
 
 
 
-    const nuevaNota = () => {
+    const newNota = () => {
         setShowDrawer(!showDrawer);
       };
 
@@ -58,7 +59,7 @@ const NotasView = () => {
               />
 
                 <div className="add">                
-                    <Button shape="circle" type="primary" onClick={nuevaNota}>
+                    <Button shape="circle" type="primary" onClick={newNota}>
                       <PlusOutlined />
                     </Button>
 
@@ -90,9 +91,10 @@ const NotasView = () => {
                 width={500}
                 closeIcon={
                     <CloseOutlined
-                      style={{ position: "absolute", top: "20px", right: "10px" }}
+                      style={{ position: "absolute", top: "18px", right: "10px" }}
                     />}
             >
+                <NuevaNota/>
 
             </Drawer>
       

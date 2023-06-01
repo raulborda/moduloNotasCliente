@@ -2,7 +2,6 @@ import { ConfigProvider } from "antd";
 import "./App.css";
 import { GlobalContext } from "./components/context/GlobalContext";
 import esES from "antd/lib/locale/es_ES";
-import Notas from "./components/notas/Notas";
 import { useState } from "react";
 import NotasView from "./components/views/NotasView";
 
@@ -17,7 +16,7 @@ function App() {
   const idC = 2049;
   const [cliSelect, setCliSelect] = useState(idC);
 
-
+  const [note, setNote] = useState("");
 
 
 
@@ -27,6 +26,7 @@ function App() {
       value={{
         idUsu, setUsu,
         cliSelect, setCliSelect,
+        note, setNote
       }}
     >
       <ConfigProvider
