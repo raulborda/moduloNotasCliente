@@ -4,13 +4,14 @@ import React, { useContext, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
+import TimelineNotas from "../timeline/TimelineNotas";
 
 const NotasView = () => {
 
     const { showDrawer, setShowDrawer } = useContext(GlobalContext);
 
-
-
+    const [notas, setNotas] = useState();
+    const [NotasFiajadas, setNotasFiajadas] = useState( );
 
     const newNota = () => {
         setShowDrawer(!showDrawer);
@@ -26,22 +27,6 @@ const NotasView = () => {
           <Row>
             <Col xs={24}>
               <Card title="DESTACADO" className="card_Destacado" extra={<span style={{color:"#56b43c", fontWeight:"bold"}} >0</span>}>
-                {/* <Tabs defaultActiveKey="1"> */}
-                  {/* <div className="add_wrapper"></div> */}
-                  {/* <TabPane
-                    tab={
-                      <span>
-                        <FileDoneOutlined />
-                        Notas ({AnchorNotes.length})
-                        Notas(4)
-                      </span>
-                    }
-                    disabled={false}
-                    key="1"
-                  >
-                    <h2>Notas</h2>
-                  </TabPane>
-                </Tabs> */}
                 {/* {AnchorNotes.length === 0 && (
               <Empty
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
@@ -70,14 +55,14 @@ const NotasView = () => {
               <Col xs={24}>
                 <div className="historial_wrapper">
                   <Card title="Completado">
-                    <Timeline
+                    <TimelineNotas
                       taskStatus={2}
                       // notes={notes}
                       // historial={historyFilter.length === 0 ? historial : historyFilter}
                     >
                       {" "}
                       <h1>Notas</h1>
-                    </Timeline>
+                    </TimelineNotas>
                   </Card>
                 </div>
               </Col>
