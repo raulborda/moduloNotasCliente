@@ -9,13 +9,12 @@ import {
   
   const NotaItem = ({ note, attached }) => {
   
-    const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado } =
-      note;
+    const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado } = note;
     let color;
   
     switch (pri_desc) {
       case "ALTA":
-        color = " #f12d2d";
+        color = "#f12d2d";
         break;
       case "MEDIA":
         color = "#e8bc0d";

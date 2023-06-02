@@ -20,7 +20,7 @@ function App() {
 
   const [showDrawer, setShowDrawer] = useState(false);
 
-
+  const [infoNotas, setInfoNotas] = useState([]);
 
 
   return (
@@ -30,6 +30,7 @@ function App() {
         cliSelect, setCliSelect,
         note, setNote,
         showDrawer, setShowDrawer,
+        infoNotas, setInfoNotas,
       }}
     >
       <ConfigProvider

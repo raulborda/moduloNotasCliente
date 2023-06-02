@@ -1,24 +1,48 @@
-import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Drawer, Empty, Row, Timeline } from "antd";
-import React, { useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { CloseOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Drawer, Empty, Row } from "antd";
+import React, { useContext, useEffect, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
 
 const NotasView = () => {
+  const URL = process.env.REACT_APP_URL;
 
-    const { showDrawer, setShowDrawer } = useContext(GlobalContext);
+  const { showDrawer, setShowDrawer, idUsu, infoNotas, setInfoNotas, cliSelect } =
+    useContext(GlobalContext);
 
-    const [notas, setNotas] = useState();
-    const [NotasFiajadas, setNotasFiajadas] = useState( );
+  const [notas, setNotas] = useState();
+  const [NotasFiajadas, setNotasFiajadas] = useState();
 
-    const newNota = () => {
-        setShowDrawer(!showDrawer);
-      };
+  //* BUSCAR NOTAS DEL CLIENTE
+  const buscarNotas = () => {
+    //setIsLoadingTI(true); // Establecer isLoadingTI en true antes de hacer la solicitud
+    const data = new FormData();
+    data.append("idCli", cliSelect);
+    fetch(`${URL}notasCli.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        const data = resp;
+        const objetoData = JSON.parse(data);
+        setInfoNotas(objetoData);
+        //setIsLoadingTI(false); // Establecer isLoadingTI en false después de recibir la respuesta
+      });
+    });
+  };
 
+  console.log(infoNotas);
 
+  useEffect(() => {
+    buscarNotas();
+  }, [cliSelect]);
 
+  const newNota = () => {
+    setShowDrawer(!showDrawer);
+  };
 
   return (
     <>
@@ -26,7 +50,16 @@ const NotasView = () => {
         <Col xs={24} md={17}>
           <Row>
             <Col xs={24}>
-              <Card title="DESTACADO" className="card_Destacado" extra={<span style={{color:"#56b43c", fontWeight:"bold"}} >0</span>}>
+              <Card
+                title="DESTACADO"
+                className="card_Destacado"
+                extra={
+                  <Button type="primary" onClick={newNota}>
+                    {/* <PlusOutlined /> */}
+                    <span style={{ fontWeight: "bold" }}>Nueva Nota</span>
+                  </Button>
+                }
+              >
                 {/* {AnchorNotes.length === 0 && (
               <Empty
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
@@ -40,25 +73,24 @@ const NotasView = () => {
                 </div>
               );
             })} */}
-             <Empty
-                image={Empty.PRESENTED_IMAGE_SIMPLE}
-                description="No hay notas fijadas"
-              />
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  description="No hay notas fijadas"
+                />
 
-                <div className="add">                
+                {/* <div className="add">                
                     <Button shape="circle" type="primary" onClick={newNota}>
                       <PlusOutlined />
                     </Button>
 
-                </div>
+                </div> */}
               </Card>
               <Col xs={24}>
                 <div className="historial_wrapper">
                   <Card title="Completado">
                     <TimelineNotas
-                      taskStatus={2}
-                      // notes={notes}
-                      // historial={historyFilter.length === 0 ? historial : historyFilter}
+                    //notes={notes}
+                    // historial={historyFilter.length === 0 ? historial : historyFilter}
                     >
                       {" "}
                       <h1>Notas</h1>
@@ -70,21 +102,19 @@ const NotasView = () => {
           </Row>
         </Col>
 
-        
-            <Drawer
-                visible={showDrawer}
-                onClose={() => setShowDrawer(false)}
-                title={"Nueva Nota"}
-                width={500}
-                closeIcon={
-                    <CloseOutlined
-                      style={{ position: "absolute", top: "18px", right: "10px" }}
-                    />}
-            >
-                <NuevaNota/>
-
-            </Drawer>
-      
+        <Drawer
+          visible={showDrawer}
+          onClose={() => setShowDrawer(false)}
+          title={"Nueva Nota"}
+          width={500}
+          closeIcon={
+            <CloseOutlined
+              style={{ position: "absolute", top: "18px", right: "10px" }}
+            />
+          }
+        >
+          <NuevaNota />
+        </Drawer>
       </div>
     </>
   );
