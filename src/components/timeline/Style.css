@@ -1,0 +1,51 @@
+.note_wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	width: 100%;
+	background: #fffcdc;
+	border-radius: 4px;
+	min-height: 6rem;
+	border: 1px solid #e3e0e0;
+}
+
+.note_header {
+	display: flex;
+	font-size: 0.8rem;
+	font-weight: 600;
+
+	color: rgb(200, 200, 200);
+}
+
+.note_author {
+	text-transform: capitalize;
+}
+.note_description {
+	font-size: 1rem;
+}
+.note_description.attached {
+	font-size: 1rem;
+	margin-top: 1rem;
+}
+
+.note_wrapper.attached > .note_header {
+	margin-top: 0.4rem;
+}
+
+.note_date {
+	margin-right: 3px;
+}
+.note_date::after {
+	content: ' · ';
+}
+
+.ribbon {
+	font-weight: 700 !important;
+	font-size: 0.8rem !important;
+}
+
+.note_wrapper_anchor {
+	margin-bottom: 0.5rem;
+	width: 93%;
+}
+

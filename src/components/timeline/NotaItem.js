@@ -6,6 +6,7 @@ import {
   import { Badge, Button, Popconfirm } from "antd";
   import moment from "moment";
   import React, { Fragment } from "react";
+  import "./Style.css"
   
   const NotaItem = ({ note, attached }) => {
   
