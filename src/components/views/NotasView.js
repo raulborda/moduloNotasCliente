@@ -77,23 +77,13 @@ const NotasView = () => {
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
                   description="No hay notas fijadas"
                 />
-
-                {/* <div className="add">                
-                    <Button shape="circle" type="primary" onClick={newNota}>
-                      <PlusOutlined />
-                    </Button>
-
-                </div> */}
               </Card>
               <Col xs={24}>
                 <div className="historial_wrapper">
                   <Card title="Completado">
                     <TimelineNotas
-                    //notes={notes}
-                    // historial={historyFilter.length === 0 ? historial : historyFilter}
+                      notes={infoNotas}
                     >
-                      {" "}
-                      <h1>Notas</h1>
                     </TimelineNotas>
                   </Card>
                 </div>
