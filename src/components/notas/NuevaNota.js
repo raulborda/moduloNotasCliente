@@ -6,7 +6,15 @@ import { GlobalContext } from "../context/GlobalContext";
 const NuevaNota = () => {
   const URL = process.env.REACT_APP_URL;
 
-  const { note, setNote, setShowDrawer, idUsu, cliSelect } = useContext(GlobalContext);
+  const {
+    note,
+    setNote,
+    setShowDrawer,
+    idUsu,
+    cliSelect,
+    isLoading,
+    setIsLoading,
+  } = useContext(GlobalContext);
 
   const [form] = Form.useForm();
   const [priority, setPriority] = useState(1);
@@ -42,12 +50,11 @@ const NuevaNota = () => {
       });
     });
 
-
-
-
     setShowDrawer(false);
     setNote("");
     form.resetFields();
+    setIsLoading(!isLoading);
+
   };
 
   return (

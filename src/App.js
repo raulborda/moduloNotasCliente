@@ -4,13 +4,9 @@ import { GlobalContext } from "./components/context/GlobalContext";
 import esES from "antd/lib/locale/es_ES";
 import { useState } from "react";
 import NotasView from "./components/views/NotasView";
-import 'moment/locale/es';
-
-
+import "moment/locale/es";
 
 function App() {
-
-
   //const idU = localStorage.getItem("usuario");
   const idU = 1;
   const [idUsu, setUsu] = useState(idU);
@@ -25,15 +21,26 @@ function App() {
 
   const [infoNotas, setInfoNotas] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isNewNote, setIsNewNote] = useState(false);
 
   return (
     <GlobalContext.Provider
       value={{
-        idUsu, setUsu,
-        cliSelect, setCliSelect,
-        note, setNote,
-        showDrawer, setShowDrawer,
-        infoNotas, setInfoNotas,
+        idUsu,
+        setUsu,
+        cliSelect,
+        setCliSelect,
+        note,
+        setNote,
+        showDrawer,
+        setShowDrawer,
+        infoNotas,
+        setInfoNotas,
+        isLoading,
+        setIsLoading,
+        isNewNote,
+        setIsNewNote,
       }}
     >
       <ConfigProvider

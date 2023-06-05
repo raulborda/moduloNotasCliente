@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Drawer, Empty, Row } from "antd";
+import { Button, Card, Col, Drawer, Empty, Row, Spin } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
@@ -10,15 +11,22 @@ import TimelineNotas from "../timeline/TimelineNotas";
 const NotasView = () => {
   const URL = process.env.REACT_APP_URL;
 
-  const { showDrawer, setShowDrawer, idUsu, infoNotas, setInfoNotas, cliSelect } =
-    useContext(GlobalContext);
+  const {
+    showDrawer,
+    setShowDrawer,
+    infoNotas,
+    setInfoNotas,
+    cliSelect,
+    isLoading,
+    setIsLoading,
+  } = useContext(GlobalContext);
 
   const [notas, setNotas] = useState();
   const [NotasFiajadas, setNotasFiajadas] = useState();
 
   //* BUSCAR NOTAS DEL CLIENTE
   const buscarNotas = () => {
-    //setIsLoadingTI(true); // Establecer isLoadingTI en true antes de hacer la solicitud
+    setIsLoading(true); // Establecer isLoading en true antes de hacer la solicitud
     const data = new FormData();
     data.append("idCli", cliSelect);
     fetch(`${URL}notasCli.php`, {
@@ -29,7 +37,7 @@ const NotasView = () => {
         const data = resp;
         const objetoData = JSON.parse(data);
         setInfoNotas(objetoData);
-        //setIsLoadingTI(false); // Establecer isLoadingTI en false después de recibir la respuesta
+        setIsLoading(false); // Establecer isLoading en false después de recibir la respuesta
       });
     });
   };
@@ -38,7 +46,11 @@ const NotasView = () => {
 
   useEffect(() => {
     buscarNotas();
-  }, [cliSelect]);
+  }, [cliSelect, isLoading]);
+
+  // useEffect(() => {
+  //   buscarNotas();
+  // }, [isNewNote]);
 
   const newNota = () => {
     setShowDrawer(!showDrawer);
@@ -81,10 +93,21 @@ const NotasView = () => {
               <Col xs={24}>
                 <div className="historial_wrapper">
                   <Card title="Completado">
-                    <TimelineNotas
-                      notes={infoNotas}
-                    >
-                    </TimelineNotas>
+                    {isLoading ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          // marginTop: "10%",
+                        }}
+                      >
+                        <Spin size="large" />
+                      </div>
+                    ) : (
+                      <TimelineNotas notes={infoNotas}></TimelineNotas>
+                    )}
                   </Card>
                 </div>
               </Col>
