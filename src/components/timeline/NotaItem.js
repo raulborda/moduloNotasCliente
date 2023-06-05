@@ -6,12 +6,17 @@ import {
   import { Badge, Button, Popconfirm } from "antd";
   import moment from "moment";
   import React, { Fragment } from "react";
+  import "moment/locale/es"; // Importar el idioma español
   import "./Style.css"
   
   const NotaItem = ({ note, attached }) => {
+
+    moment.locale('es'); // Establecer el idioma en español
   
     const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado } = note;
     let color;
+
+    console.log(not_fechahora)
   
     switch (pri_desc) {
       case "ALTA":

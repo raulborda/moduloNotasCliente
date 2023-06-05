@@ -4,6 +4,9 @@ import { GlobalContext } from "./components/context/GlobalContext";
 import esES from "antd/lib/locale/es_ES";
 import { useState } from "react";
 import NotasView from "./components/views/NotasView";
+import 'moment/locale/es';
+
+
 
 function App() {
 
