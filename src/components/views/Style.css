@@ -16,3 +16,16 @@
 	right: 2rem;
 	z-index: 1;
 }
+
+.historial_wrapper {
+	margin-left: 20px;
+	margin-top: 1rem;
+	margin-left: 0;
+}
+
+.historial_wrapper {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}

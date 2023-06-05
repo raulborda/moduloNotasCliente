@@ -12,6 +12,7 @@ const TimelineNotas = ({ notes }) => {
         <TL>
           {notes.map((note) => (
             <TL.Item
+            style={{width:"96.5%"}}
               key={note.not_id}
               dot={<CopyOutlined className="timeline-clock-icon" />}
             >

@@ -49,3 +49,24 @@
 	width: 93%;
 }
 
+.note_anchor {
+	position: absolute;
+	right: 0;
+	bottom: 0.5rem;
+}
+
+.anchor {
+	color: #56b43c !important;
+	transform: rotate(-45deg);
+}
+.unanchor {
+	transition: all ease-in-out 300ms;
+	transform: rotate(0deg);
+}
+.unanchor:hover {
+	transition: all ease-in-out 300ms;
+	transform: rotate(-45deg);
+}
+
+
+

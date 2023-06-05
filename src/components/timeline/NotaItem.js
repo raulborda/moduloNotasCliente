@@ -48,7 +48,7 @@ import {
     };
     return (
       <Fragment>
-        <Badge.Ribbon className="ribbon" text={pri_desc} color={color}>
+        <Badge.Ribbon className="ribbon" text={pri_desc} color={color} style={{marginRight:"-34px"}}>
           <div className={!attached ? `note_wrapper` : `note_wrapper attached`}>
             <div className="note_header">
               <div className="note_date">
@@ -71,6 +71,7 @@ import {
                   >
                     <PushpinOutlined
                       className={not_anclado === 1 ? `anchor` : `unanchor`}
+                      style={{ color: "#56b43c" }}
                     />
                   </Button>
                   <Button
@@ -78,7 +79,7 @@ import {
                     style={{ padding: 5 }}
                     onClick={() => onEdit(not_id)}
                   >
-                    <EditOutlined />
+                    <EditOutlined style={{ color: "#56b43c" }}/>
                   </Button>
                   <Popconfirm
                     style={{ width: 200 }}
