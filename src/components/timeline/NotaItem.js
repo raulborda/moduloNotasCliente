@@ -16,7 +16,6 @@ import {
     const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado } = note;
     let color;
 
-    console.log(not_fechahora)
   
     switch (pri_desc) {
       case "ALTA":

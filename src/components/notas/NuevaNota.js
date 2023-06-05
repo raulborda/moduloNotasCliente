@@ -4,7 +4,9 @@ import Note from "./Note";
 import { GlobalContext } from "../context/GlobalContext";
 
 const NuevaNota = () => {
-  const { note, setNote, setShowDrawer } = useContext(GlobalContext);
+  const URL = process.env.REACT_APP_URL;
+
+  const { note, setNote, setShowDrawer, idUsu, cliSelect } = useContext(GlobalContext);
 
   const [form] = Form.useForm();
   const [priority, setPriority] = useState(1);
@@ -14,13 +16,35 @@ const NuevaNota = () => {
   };
 
   const onFinish = (v) => {
-    const data = {
+    const dataN = {
       ...v,
       not_desc: note,
       not_importancia: priority,
     };
 
-    console.log(data);
+    console.log(dataN.not_desc);
+    console.log(dataN.not_importancia);
+    console.log(idUsu);
+    console.log(cliSelect);
+
+    const data = new FormData();
+    data.append("idUsu", idUsu);
+    data.append("idC", cliSelect);
+    data.append("notDesc", dataN.not_desc);
+    data.append("notImport", dataN.not_importancia);
+    fetch(`${URL}nuevaNota.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        const data = resp;
+        console.log(data);
+      });
+    });
+
+
+
+
     setShowDrawer(false);
     setNote("");
     form.resetFields();
