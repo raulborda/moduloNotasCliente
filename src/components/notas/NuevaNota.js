@@ -24,6 +24,7 @@ const NuevaNota = () => {
   };
 
   const onFinish = (v) => {
+    setIsLoading(true);
     const dataN = {
       ...v,
       not_desc: note,
@@ -47,14 +48,13 @@ const NuevaNota = () => {
       response.text().then((resp) => {
         const data = resp;
         console.log(data);
+        setIsLoading(false);
       });
     });
 
     setShowDrawer(false);
     setNote("");
     form.resetFields();
-    setIsLoading(!isLoading);
-
   };
 
   return (

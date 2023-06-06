@@ -42,15 +42,11 @@ const NotasView = () => {
     });
   };
 
-  console.log(infoNotas);
+  //console.log(infoNotas);
 
   useEffect(() => {
     buscarNotas();
   }, [cliSelect, isLoading]);
-
-  // useEffect(() => {
-  //   buscarNotas();
-  // }, [isNewNote]);
 
   const newNota = () => {
     setShowDrawer(!showDrawer);

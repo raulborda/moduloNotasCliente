@@ -4,7 +4,7 @@ import React, { Fragment} from "react";
 import NotaItem from "./NotaItem";
 
 const TimelineNotas = ({ notes }) => {
-  console.log(" desde timeline: ", notes);
+  //console.log(" desde timeline: ", notes);
 
   return (
     <Fragment>
