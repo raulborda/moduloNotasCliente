@@ -26,9 +26,11 @@ const NotasView = () => {
   const [notas, setNotas] = useState();
   const [NotasFiajadas, setNotasFiajadas] = useState();
 
+  const [cargando, setCargando] = useState(true);
+
   //* BUSCAR NOTAS DEL CLIENTE
   const buscarNotas = () => {
-    setIsLoading(true); // Establecer isLoading en true antes de hacer la solicitud
+    //setIsLoading(true); // Establecer isLoading en true antes de hacer la solicitud
     const data = new FormData();
     data.append("idCli", cliSelect);
     fetch(`${URL}notasCli.php`, {
@@ -39,7 +41,7 @@ const NotasView = () => {
         const data = resp;
         const objetoData = JSON.parse(data);
         setInfoNotas(objetoData);
-        setIsLoading(false); // Establecer isLoading en false después de recibir la respuesta
+        setCargando(false); // Establecer setCargando en false después de recibir la primer respuesta
       });
     });
   };
@@ -48,7 +50,7 @@ const NotasView = () => {
 
   useEffect(() => {
     buscarNotas();
-  }, [cliSelect, isLoading, actualizar]);
+  }, [cliSelect, isLoading]);
 
   const newNota = () => {
     setShowDrawer(!showDrawer);
@@ -91,7 +93,7 @@ const NotasView = () => {
               <Col xs={24}>
                 <div className="historial_wrapper">
                   <Card title="Completado">
-                    {isLoading ? (
+                    {isLoading || cargando ? (
                       <div
                         style={{
                           display: "flex",

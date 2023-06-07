@@ -8,7 +8,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
   const URL = process.env.REACT_APP_URL;
   //console.log("desde editar nota:",notID);
   //console.log("desde editar nota:",prioridad);
-  const { note, setNote, actualizar, setActualizar } = useContext(GlobalContext);
+  const { note, setNote, setIsLoading, } = useContext(GlobalContext);
 
 
   const [form] = Form.useForm();
@@ -19,7 +19,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
   };
 
   const onFinish = (v) => {
-    //console.log(v);
+    setIsLoading(true);
     const dataN = {
       ...v,
       not_desc: note,
@@ -41,7 +41,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
       response.text().then((resp) => {
         const data = resp;
         console.log(data);
-        setActualizar(!actualizar);
+        setIsLoading(false);
       });
     });
 
