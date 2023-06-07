@@ -41,7 +41,7 @@ const NotasView = () => {
         const data = resp;
         const objetoData = JSON.parse(data);
         setInfoNotas(objetoData);
-        console.log(objetoData);
+        //console.log(objetoData);
         setCargando(false); // Establecer setCargando en false después de recibir la primer respuesta
       });
     });

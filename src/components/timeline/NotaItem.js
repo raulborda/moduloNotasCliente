@@ -58,6 +58,21 @@ const NotaItem = ({ note, attached }) => {
       estado = 0;
     }
 
+    setIsLoading(true);
+    const data = new FormData();
+    data.append("idNot", id);
+    data.append("estado", estado);
+    fetch(`${URL}anclarNota.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        const data = resp;
+        console.log(data);
+        setIsLoading(false);
+      });
+    });
+
     console.log("fijado: ", id, estado);
   };
 
