@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { useQuill } from "react-quilljs";

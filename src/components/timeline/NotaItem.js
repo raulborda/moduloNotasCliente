@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable eqeqeq */
 import {
-  CloseOutlined,
   DeleteOutlined,
   EditOutlined,
   PushpinOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Drawer, Popconfirm } from "antd";
+import { Badge, Button, Popconfirm } from "antd";
 import moment from "moment";
 import React, { Fragment, useContext, useState } from "react";
 import "moment/locale/es"; // Importar el idioma español
@@ -18,8 +19,6 @@ const NotaItem = ({ note, attached }) => {
   const { isLoading, setIsLoading } = useContext(GlobalContext);
 
   const [showDrawerEdit, setShowDrawerEdit] = useState(false);
-
-  const [notaID, setNotaID] = useState();
 
   moment.locale("es"); // Establecer el idioma en español
 

@@ -12,7 +12,6 @@ const NuevaNota = () => {
     setShowDrawer,
     idUsu,
     cliSelect,
-    isLoading,
     setIsLoading,
   } = useContext(GlobalContext);
 
