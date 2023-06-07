@@ -48,9 +48,9 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
     //   });
     // });
 
-    // setShowDrawerEditar(false);
-    // setNote("");
-    // form.resetFields();
+    onClose();
+    setNote("");
+    form.resetFields();
   };
 
   return (
