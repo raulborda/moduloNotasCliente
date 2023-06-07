@@ -22,7 +22,7 @@ const NotaItem = ({ note, attached }) => {
 
   moment.locale("es"); // Establecer el idioma en español
 
-  const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado } =
+  const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado, not_importancia } =
     note;
 
   let color;
@@ -153,7 +153,7 @@ const NotaItem = ({ note, attached }) => {
             />
           }
         >
-          <EditarNota notID={notaID}/>
+          <EditarNota notID={notaID} prioridad={not_importancia}/>
         </Drawer>
     </Fragment>
   );

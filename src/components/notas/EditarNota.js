@@ -2,9 +2,10 @@ import { Button, Col, Form, Radio, Row } from 'antd';
 import React, { useState } from 'react';
 import NoteEdit from './NoteEdit';
 
-const EditarNota = ({notID}) => {
+const EditarNota = ({notID, prioridad}) => {
 
 console.log("desde editar nota:",notID);
+console.log("desde editar nota:",prioridad);
 
     const [form] = Form.useForm();
     const [priority, setPriority] = useState(1);
@@ -69,7 +70,7 @@ console.log("desde editar nota:",notID);
                 <Row gutter={[20, 20]}>
                   <Col sm={24}>
                     <Radio.Group
-                      defaultValue="1"
+                      defaultValue={String(prioridad)}
                       buttonStyle="solid"
                       onChange={onChangePriority}
                     >
