@@ -27,8 +27,8 @@ const NoteEdit = ({ editValue, width, height }) => {
     });
   }, [editValue]);
 
-  console.log(infoNotaSelect);
-  console.log(noteBody);
+  //console.log(infoNotaSelect);
+  //console.log(noteBody);
 
   const [value, setValue] = useState("");
   const { setNote } = useContext(GlobalContext);

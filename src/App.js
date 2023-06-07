@@ -18,6 +18,7 @@ function App() {
   const [note, setNote] = useState("");
 
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showDrawerEdit, setShowDrawerEdit] = useState(false);
 
   const [infoNotas, setInfoNotas] = useState([]);
 
@@ -41,6 +42,8 @@ function App() {
         setIsLoading,
         isNewNote,
         setIsNewNote,
+        showDrawerEdit,
+        setShowDrawerEdit,
       }}
     >
       <ConfigProvider

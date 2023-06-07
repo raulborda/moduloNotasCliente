@@ -18,12 +18,20 @@ const NotaItem = ({ note, attached }) => {
   const { isLoading, setIsLoading } = useContext(GlobalContext);
 
   const [showDrawerEdit, setShowDrawerEdit] = useState(false);
+
   const [notaID, setNotaID] = useState();
 
   moment.locale("es"); // Establecer el idioma en español
 
-  const { not_desc, not_fechahora, not_id, pri_desc, usu_nombre, not_anclado, not_importancia } =
-    note;
+  const {
+    not_desc,
+    not_fechahora,
+    not_id,
+    pri_desc,
+    usu_nombre,
+    not_anclado,
+    not_importancia,
+  } = note;
 
   let color;
 
@@ -52,12 +60,11 @@ const NotaItem = ({ note, attached }) => {
     }
 
     console.log("fijado: ", id, estado);
-
   };
 
   const onEdit = (id) => {
     setShowDrawerEdit(true);
-    setNotaID(id)
+    //setNotaID(id)
   };
 
   const onArchive = (not_id) => {
@@ -109,22 +116,27 @@ const NotaItem = ({ note, attached }) => {
                       className="anchor"
                       style={{ color: "#56b43c" }}
                     />
-
                   ) : (
                     <PushpinOutlined
                       className="unanchor"
                       style={{ color: "#56b43c" }}
                     />
                   )}
-                  
                 </Button>
                 <Button
                   type="link"
                   style={{ padding: 5 }}
                   onClick={() => onEdit(not_id)}
+
                 >
                   <EditOutlined style={{ color: "#56b43c" }} />
                 </Button>
+                <EditarNota
+                  notID={not_id}
+                  prioridad={not_importancia}
+                  visible={showDrawerEdit}
+                  onClose={() => setShowDrawerEdit(false)}
+                />
                 <Popconfirm
                   style={{ width: 200 }}
                   title="¿Deseas eliminar esta nota?"
@@ -142,7 +154,7 @@ const NotaItem = ({ note, attached }) => {
           </Fragment>
         </div>
       </Badge.Ribbon>
-      <Drawer
+      {/* <Drawer
           visible={showDrawerEdit}
           onClose={() => setShowDrawerEdit(false)}
           title={"Editar Nota"}
@@ -154,7 +166,7 @@ const NotaItem = ({ note, attached }) => {
           }
         >
           <EditarNota notID={notaID} prioridad={not_importancia}/>
-        </Drawer>
+        </Drawer> */}
     </Fragment>
   );
 };
