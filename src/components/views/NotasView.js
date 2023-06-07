@@ -106,7 +106,7 @@ const NotasView = () => {
                         <Spin size="large" />
                       </div>
                     ) : (
-                      <TimelineNotas notes={infoNotas}></TimelineNotas>
+                        <TimelineNotas notes={infoNotas}></TimelineNotas>
                     )}
                   </Card>
                 </div>
