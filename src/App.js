@@ -20,6 +20,8 @@ function App() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [showDrawerEdit, setShowDrawerEdit] = useState(false);
 
+  const [actualizar, setActualizar] = useState(false);
+
   const [infoNotas, setInfoNotas] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -44,6 +46,8 @@ function App() {
         setIsNewNote,
         showDrawerEdit,
         setShowDrawerEdit,
+        actualizar,
+        setActualizar,
       }}
     >
       <ConfigProvider

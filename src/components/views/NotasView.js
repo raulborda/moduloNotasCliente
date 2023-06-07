@@ -19,6 +19,8 @@ const NotasView = () => {
     cliSelect,
     isLoading,
     setIsLoading,
+    actualizar, 
+    setActualizar,
   } = useContext(GlobalContext);
 
   const [notas, setNotas] = useState();
@@ -46,7 +48,7 @@ const NotasView = () => {
 
   useEffect(() => {
     buscarNotas();
-  }, [cliSelect, isLoading]);
+  }, [cliSelect, isLoading, actualizar]);
 
   const newNota = () => {
     setShowDrawer(!showDrawer);
