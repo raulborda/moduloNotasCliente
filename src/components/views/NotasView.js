@@ -90,9 +90,6 @@ const NotasView = () => {
                     card="destacado"
                   ></TimelineNotas>
                 )}
-                {/* <div className="note_wrapper_anchor">
-                  
-                </div> */}
               </Card>
               <Col xs={24}>
                 <div className="historial_wrapper">
