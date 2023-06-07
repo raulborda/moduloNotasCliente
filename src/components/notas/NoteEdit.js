@@ -63,11 +63,13 @@ const NoteEdit = ({ editValue, width, height }) => {
     }
     if (quill) {
       quill.on("text-change", (v) => {
-        setValue(noteBody);
-        setNote(noteBody);
+        const delta = v.delta;
+        const text = quill.root.innerHTML;
+        setValue(text);
+        setNote(text);
       });
     }
-  }, [editValue, quill, setNote]);
+  }, [editValue, quill, setNote, noteBody]);
 
   return (
     <Fragment>
