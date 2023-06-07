@@ -3,7 +3,7 @@
     /* margin: 5px; */
     display: flex;
     justify-content: center;
-    background-color: beige; /* para que se vean las cards*/
+    background-color: #efefef; /* para que se vean las cards*/
 }
 
 .card_Destacado{

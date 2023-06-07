@@ -54,42 +54,52 @@
 // };
 // export default TimelineNotas;
 
-
 import { CopyOutlined } from "@ant-design/icons";
 import { Empty, Timeline as TL } from "antd";
 import React, { Fragment } from "react";
 import NotaItem from "./NotaItem";
 
-const TimelineNotas = ({ notes }) => {
-
-  console.log(notes[2].not_anclado)
-  // Filtrar las notas con not_importancia igual a 1
-  const filteredNotes = notes.filter((note) => note.not_anclado !== "1");
+const TimelineNotas = ({ notes, card }) => {
+  const filteredNotes = notes.filter((note) => {
+    if (card === "general") {
+      return note.not_anclado !== "1";
+    } else if (card === "destacado") {
+      return note.not_anclado !== "0";
+    }
+    return true;
+  });
 
   return (
-    <Fragment>
+    <>
       {filteredNotes && filteredNotes.length > 0 ? (
-        <div style={{ height: "316px", width: "99%", overflowY: "scroll", padding: "15px" }}>
+        <div
+          style={{
+            height: "316px",
+            width: "99%",
+            overflowY: "scroll",
+            padding: "15px",
+          }}
+        >
           <style>
             {`
-              ::-webkit-scrollbar {
-                width: 8px;
-              }
+            ::-webkit-scrollbar {
+              width: 8px;
+            }
 
-              ::-webkit-scrollbar-track {
-                background-color: #f5f5f5;
-                border-radius: 4px;
-              }
+            ::-webkit-scrollbar-track {
+              background-color: #f5f5f5;
+              border-radius: 4px;
+            }
 
-              ::-webkit-scrollbar-thumb {
-                background-color: #e8e8e8;
-                border-radius: 4px;
-              }
+            ::-webkit-scrollbar-thumb {
+              background-color: #e8e8e8;
+              border-radius: 4px;
+            }
 
-              ::-webkit-scrollbar-thumb:hover {
-                background-color: #e5e5e5;
-              }
-            `}
+            ::-webkit-scrollbar-thumb:hover {
+              background-color: #e5e5e5;
+            }
+          `}
           </style>
           <TL>
             {filteredNotes.map((note) => (
@@ -109,8 +119,9 @@ const TimelineNotas = ({ notes }) => {
           description="No hay notas"
         />
       )}
-    </Fragment>
+    </>
   );
 };
 
 export default TimelineNotas;
+

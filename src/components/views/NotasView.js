@@ -72,23 +72,27 @@ const NotasView = () => {
                   </Button>
                 }
               >
-                {notasFiajadas.length === 0 && (
-                  <Empty
-                    image={Empty.PRESENTED_IMAGE_SIMPLE}
-                    description="No hay notas fijadas"
-                  />
+                {isLoading || cargando ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      // marginTop: "10%",
+                    }}
+                  >
+                    <Spin size="large" />
+                  </div>
+                ) : (
+                  <TimelineNotas
+                    notes={infoNotas}
+                    card="destacado"
+                  ></TimelineNotas>
                 )}
-                {notasFiajadas.map((note) => {
-                  return (
-                    <div className="note_wrapper_anchor">
-                      <NotaItem note={note} attached={false}></NotaItem>
-                    </div>
-                  );
-                })}
-                {/* <Empty
-                  image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="No hay notas fijadas"
-                /> */}
+                {/* <div className="note_wrapper_anchor">
+                  
+                </div> */}
               </Card>
               <Col xs={24}>
                 <div className="historial_wrapper">
@@ -106,7 +110,10 @@ const NotasView = () => {
                         <Spin size="large" />
                       </div>
                     ) : (
-                      <TimelineNotas notes={infoNotas}></TimelineNotas>
+                      <TimelineNotas
+                        notes={infoNotas}
+                        card="general"
+                      ></TimelineNotas>
                     )}
                   </Card>
                 </div>
