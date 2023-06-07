@@ -101,7 +101,6 @@ const NotaItem = ({ note, attached }) => {
             className="note_description"
             dangerouslySetInnerHTML={{ __html: not_desc }}
           ></div>
-
           <Fragment>
             {!attached && (
               <div className="note_anchor">
@@ -153,19 +152,6 @@ const NotaItem = ({ note, attached }) => {
           </Fragment>
         </div>
       </Badge.Ribbon>
-      {/* <Drawer
-          visible={showDrawerEdit}
-          onClose={() => setShowDrawerEdit(false)}
-          title={"Editar Nota"}
-          width={500}
-          closeIcon={
-            <CloseOutlined
-              style={{ position: "absolute", top: "18px", right: "10px" }}
-            />
-          }
-        >
-          <EditarNota notID={notaID} prioridad={not_importancia}/>
-        </Drawer> */}
     </Fragment>
   );
 };

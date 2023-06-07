@@ -7,6 +7,7 @@ import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
+import NotaItem from "../timeline/NotaItem";
 
 const NotasView = () => {
   const URL = process.env.REACT_APP_URL;
@@ -19,12 +20,11 @@ const NotasView = () => {
     cliSelect,
     isLoading,
     setIsLoading,
-    actualizar, 
+    actualizar,
     setActualizar,
   } = useContext(GlobalContext);
 
-  const [notas, setNotas] = useState();
-  const [NotasFiajadas, setNotasFiajadas] = useState();
+  const [notasFiajadas, setNotasFiajadas] = useState([]);
 
   const [cargando, setCargando] = useState(true);
 
@@ -41,6 +41,7 @@ const NotasView = () => {
         const data = resp;
         const objetoData = JSON.parse(data);
         setInfoNotas(objetoData);
+        console.log(objetoData);
         setCargando(false); // Establecer setCargando en false después de recibir la primer respuesta
       });
     });
@@ -67,32 +68,31 @@ const NotasView = () => {
                 className="card_Destacado"
                 extra={
                   <Button type="primary" onClick={newNota}>
-                    {/* <PlusOutlined /> */}
                     <span style={{ fontWeight: "bold" }}>Nueva Nota</span>
                   </Button>
                 }
               >
-                {/* {AnchorNotes.length === 0 && (
-              <Empty
-                image={Empty.PRESENTED_IMAGE_SIMPLE}
-                description="No hay notas fijadas"
-              />
-            )}
-            {AnchorNotes.map((note) => {
-              return (
-                <div className="note_wrapper_anchor">
-                  <NoteItem note={note} attached={false}></NoteItem>
-                </div>
-              );
-            })} */}
-                <Empty
+                {notasFiajadas.length === 0 && (
+                  <Empty
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    description="No hay notas fijadas"
+                  />
+                )}
+                {notasFiajadas.map((note) => {
+                  return (
+                    <div className="note_wrapper_anchor">
+                      <NotaItem note={note} attached={false}></NotaItem>
+                    </div>
+                  );
+                })}
+                {/* <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
                   description="No hay notas fijadas"
-                />
+                /> */}
               </Card>
               <Col xs={24}>
                 <div className="historial_wrapper">
-                  <Card title="Completado">
+                  <Card title="GENERAL">
                     {isLoading || cargando ? (
                       <div
                         style={{
@@ -106,7 +106,7 @@ const NotasView = () => {
                         <Spin size="large" />
                       </div>
                     ) : (
-                        <TimelineNotas notes={infoNotas}></TimelineNotas>
+                      <TimelineNotas notes={infoNotas}></TimelineNotas>
                     )}
                   </Card>
                 </div>
