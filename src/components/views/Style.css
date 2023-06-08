@@ -11,18 +11,19 @@
 }
 
 .encabezado {
+  margin-left: -35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /*background-color: #f2f2f2;*/
   background-color: #ffff;
-  width: 100%;
+  width: 105%;
+  margin-top: -10px;
 }
 
 .encabezado__texto {
 	font-size: 16px;
-  font-weight: 600;
-  line-height: 25.14px;
+  font-weight: 500;
 }
 
 .encabezado_extra{
