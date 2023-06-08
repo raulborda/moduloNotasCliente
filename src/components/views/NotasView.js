@@ -1,7 +1,18 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Drawer, Empty, Row, Spin } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Drawer,
+  Empty,
+  Row,
+  Spin,
+  Layout,
+  Switch,
+  Divider,
+} from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
@@ -9,8 +20,16 @@ import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
 import NotaItem from "../timeline/NotaItem";
 
+const { Header } = Layout;
+
 const NotasView = () => {
   const URL = process.env.REACT_APP_URL;
+
+  const [mostrarDestacados, setMostrarDestacados] = useState(false);
+
+  const toggleMostrarDestacados = () => {
+    setMostrarDestacados(!mostrarDestacados);
+  };
 
   const {
     showDrawer,
@@ -59,6 +78,26 @@ const NotasView = () => {
 
   return (
     <>
+      <Header style={{ backgroundColor: "#ffff" }}>
+        <div className="encabezado">
+          <div className="encabezado__texto">NOTAS</div>
+          <div className="encabezado_extra">
+            <div className="encabezado__switch">
+              <Switch
+                checked={mostrarDestacados}
+                onChange={toggleMostrarDestacados}
+              />
+            </div>
+            <div>
+              <Button type="primary" onClick={newNota}>
+                <span style={{ fontWeight: "bold" }}>Nueva Nota</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Header>
+      <Divider style={{marginBottom:"10px", marginTop:"-8px"}}/>
+      {/* Resto de tu código... */}
       <div className="wrapper_Cards">
         <Col xs={24} md={17}>
           <Row>

@@ -1,31 +1,56 @@
-.wrapper_Cards{
-    height: 100vh;
-    /* margin: 5px; */
-    display: flex;
-    justify-content: center;
-    background-color: #efefef; /* para que se vean las cards*/
+.wrapper_Cards {
+  height: 100vh;
+  /* margin: 5px; */
+  display: flex;
+  justify-content: center;
+  /*background-color: #efefef; /* para que se vean las cards*/
 }
 
-.card_Destacado{
-    margin-bottom: 20px;
+.card_Destacado {
+  margin-bottom: 20px;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*background-color: #f2f2f2;*/
+  background-color: #ffff;
+  width: 100%;
+}
+
+.encabezado__texto {
+	font-size: 16px;
+  font-weight: 600;
+  line-height: 25.14px;
+}
+
+.encabezado_extra{
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.encabezado__switch {
+  margin-right: 15px;
 }
 
 .add {
-	position: absolute;
-	bottom: 2rem;
-	right: 2rem;
-	z-index: 1;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
 }
 
 .historial_wrapper {
-	margin-left: 20px;
-	margin-top: 1rem;
-	margin-left: 0;
+  margin-left: 20px;
+  margin-top: 1rem;
+  margin-left: 0;
 }
 
 .historial_wrapper {
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
 }
