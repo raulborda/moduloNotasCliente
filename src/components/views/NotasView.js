@@ -96,9 +96,45 @@ const NotasView = () => {
           </div>
         </div>
       </Header>
-      <Divider style={{marginBottom:"10px", marginTop:"-8px"}}/>
-      {/* Resto de tu código... */}
-      <div className="wrapper_Cards">
+      <Divider style={{ marginBottom: "10px", marginTop: "-8px" }} />
+      {!mostrarDestacados ? (
+        <div className="historial_wrapper">
+          {isLoading || cargando ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                // marginTop: "10%",
+              }}
+            >
+              <Spin size="large" />
+            </div>
+          ) : (
+            <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
+          )}
+        </div>
+      ) : (
+        <div className="historial_wrapper">
+          {isLoading || cargando ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                // marginTop: "10%",
+              }}
+            >
+              <Spin size="large" />
+            </div>
+          ) : (
+            <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
+          )}
+        </div>
+      )}
+       {/*<div className="wrapper_Cards">
         <Col xs={24} md={17}>
           <Row>
             <Col xs={24}>
@@ -156,8 +192,8 @@ const NotasView = () => {
               </Col>
             </Col>
           </Row>
-        </Col>
-
+        </Col> 
+      </div>*/}
         <Drawer
           visible={showDrawer}
           onClose={() => setShowDrawer(false)}
@@ -171,7 +207,6 @@ const NotasView = () => {
         >
           <NuevaNota />
         </Drawer>
-      </div>
     </>
   );
 };

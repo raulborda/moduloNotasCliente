@@ -19,7 +19,7 @@ const TimelineNotas = ({ notes, card }) => {
       {filteredNotes && filteredNotes.length > 0 ? (
         <div
           style={{
-            height: "210px",
+            height: "500px",
             width: "99%",
             overflowY: "scroll",
             padding: "15px",
