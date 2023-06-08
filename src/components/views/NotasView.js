@@ -121,6 +121,19 @@ const NotasView = () => {
           ) : (
             <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
           )}
+          <Drawer
+          visible={showDrawer}
+          onClose={() => setShowDrawer(false)}
+          title={"Nueva Nota"}
+          width={500}
+          closeIcon={
+            <CloseOutlined
+              style={{ position: "absolute", top: "18px", right: "10px" }}
+            />
+          }
+        >
+          <NuevaNota />
+        </Drawer>
         </div>
       ) : (
         <div className="historial_wrapper">
@@ -139,6 +152,19 @@ const NotasView = () => {
           ) : (
             <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
           )}
+          <Drawer
+          visible={showDrawer}
+          onClose={() => setShowDrawer(false)}
+          title={"Nueva Nota"}
+          width={500}
+          closeIcon={
+            <CloseOutlined
+              style={{ position: "absolute", top: "18px", right: "10px" }}
+            />
+          }
+        >
+          <NuevaNota />
+        </Drawer>
         </div>
       )}
        {/*<div className="wrapper_Cards">
@@ -200,7 +226,6 @@ const NotasView = () => {
             </Col>
           </Row>
         </Col> 
-      </div>*/}
         <Drawer
           visible={showDrawer}
           onClose={() => setShowDrawer(false)}
@@ -214,6 +239,8 @@ const NotasView = () => {
         >
           <NuevaNota />
         </Drawer>
+      </div>*/}
+        
     </>
   );
 };
