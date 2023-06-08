@@ -12,7 +12,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
 
 
   const [form] = Form.useForm();
-  const [priority, setPriority] = useState(1);
+  const [priority, setPriority] = useState(prioridad);
 
   const onChangePriority = (v) => {
     setPriority(Number(v.target.value));
@@ -47,6 +47,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
 
     onClose();
     setNote("");
+    setPriority("");
     form.resetFields();
   };
 

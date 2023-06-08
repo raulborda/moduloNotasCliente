@@ -7,12 +7,12 @@ import NotasView from "./components/views/NotasView";
 import "moment/locale/es";
 
 function App() {
-  const idU = localStorage.getItem("usuario");
-  //const idU = 1;
+  //const idU = localStorage.getItem("usuario");
+  const idU = 1;
   const [idUsu, setUsu] = useState(idU);
 
-  const idC = localStorage.getItem("cliSelect");
-  //const idC = 2049;
+  //const idC = localStorage.getItem("cliSelect");
+  const idC = 2049;
   const [cliSelect, setCliSelect] = useState(idC);
 
   const [note, setNote] = useState("");
