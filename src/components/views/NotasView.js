@@ -82,6 +82,13 @@ const NotasView = () => {
         <div className="encabezado">
           <div className="encabezado__texto">NOTAS</div>
           <div className="encabezado_extra">
+            <div className="encabezado__label">
+            {!mostrarDestacados ? (
+              <label>Ver Destacados</label>
+            ):(
+              <label>Ver General</label>
+            )}  
+            </div>
             <div className="encabezado__switch">
               <Switch
                 checked={mostrarDestacados}
