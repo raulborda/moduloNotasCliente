@@ -14,6 +14,7 @@ import "./Style.css";
 import { GlobalContext } from "../context/GlobalContext";
 import EditarNota from "../notas/EditarNota";
 import AdministrarTags from "../tags/AdministrarTags";
+import TagsListNota from "../tags/TagsListNota";
 
 const NotaItem = ({ note, attached }) => {
   const URL = process.env.REACT_APP_URL;
@@ -124,8 +125,8 @@ const NotaItem = ({ note, attached }) => {
             dangerouslySetInnerHTML={{ __html: not_desc }}
           ></div>
           <Fragment>
-            <div style={{position: "absolute", left: 20, bottom: "-0.5rem"}}>
-              <h6>holi</h6>
+            <div style={{position: "absolute", left: 20, bottom: "12px"}}>
+              <TagsListNota notaId={not_id}/>
             </div>
             {!attached && (
               <div className="note_anchor">

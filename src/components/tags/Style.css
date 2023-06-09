@@ -34,3 +34,15 @@
     border-left: 8px solid rgba(0, 0, 0, 0.329);
 }
 
+.selected_tags{
+    display: flex;
+    flex-direction: row;
+}
+
+.selected_tag{
+    margin-left: 2px;
+    margin-right: 4px;
+    height: 10px;
+    width: 27px;
+    border-radius: 8px;
+}
