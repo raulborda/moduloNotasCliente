@@ -8,14 +8,14 @@
 	margin-bottom: 4px;	
 }
 
-.tags_wrapper .tag {
+.tag {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 3px;
     max-width: 100%;
     margin-right: 5px;
-    width: 86%;
+    width: 70%;
     background-color: rgb(0, 162, 255);
     padding: 2px 8px;
     cursor: pointer;
@@ -23,7 +23,12 @@
     transition: all ease-in-out 300ms;
 }
 
-.tags_wrapper .tag:hover {
+.tag_name{
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+.tag:hover {
     transition: all ease-in-out 300ms;
     box-sizing: border-box;
     border-left: 8px solid rgba(0, 0, 0, 0.329);

@@ -1,16 +1,15 @@
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Button, Col, Drawer, Form, Row, Select, Tag } from "antd";
+import { Button, Drawer } from "antd";
 import React, { useEffect, useState } from "react";
 import "./Style.css"
 
 const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
   const URL = process.env.REACT_APP_URL;
 
-  const [form] = Form.useForm();
 
   const [infoEtiquetas, setInfoEtiquetas] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
-  let selected;
 
   useEffect(() => {
     const data = new FormData();
@@ -28,11 +27,29 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
     });
   }, [notaId]);
 
-  console.log(infoEtiquetas);
 
-  const onFinish = (v) => {
-    console.log(v);
+  const handleTagClick = (tagId) => {
+    const isSelected = selectedTags.includes(tagId);
+    let updatedSelectedTags;
+
+    if (isSelected) {
+      updatedSelectedTags = selectedTags.filter((selectedTag) => selectedTag !== tagId);
+    } else {
+      updatedSelectedTags = [...selectedTags, tagId];
+    }
+
+    setSelectedTags(updatedSelectedTags);
   };
+
+  const isTagSelected = (tagId) => {
+    return selectedTags.includes(tagId);
+  };
+
+  const editTags = () => {
+    console.log(selectedTags);
+    onClose();
+  }
+
 
   return (
     <>
@@ -40,76 +57,30 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
         visible={visible}
         onClose={() => onClose()}
         title={"Administrar Etiquetas"}
-        width={350}
+        width={320}
         closeIcon={
           <CloseOutlined
             style={{ position: "absolute", top: "18px", right: "10px" }}
           />
         }
       >
-        {/* <Form layout="vertical" form={form} onFinish={onFinish}>
-          <Col>
-            <h4>Etiquetas</h4>
-            <Form.Item name={"tags"}>
-              <Row gutter={[8, 8]}>
-                <Select
-                  mode="multiple"
-                  placeholder="Seleccione etiquetas"
-                  style={{ width: "300px" }}
-                //   onChange={(v, c) => {
-                //     setTagsListFilter(
-                //       c.map((item) => {
-                //         return { etq_id: Number(item.key) };
-                //       })
-                //     );
-                //   }}
-                >
-                  {infoEtiquetas &&
-                    infoEtiquetas?.map((item) => {
-                      const { etq_color, etq_id, etq_nombre } = item;
-                      console.log(etq_color);
-                      return (
-                        <Select.Option key={etq_id}>
-                          <Tag color={etq_color} key={etq_id}>
-                            {etq_nombre}
-                          </Tag>
-                        </Select.Option>
-                      );
-                    })}
-                </Select>
-              </Row>
-            </Form.Item>
-          </Col>
-        </Form> */}
         {infoEtiquetas &&
-          infoEtiquetas?.map((tag) => {
-            // if (tagsList) {
-            //   selected = tagsList.filter((tagL) => {
-            //     if (tagL.etq_id === tag.etq_id) {
-            //       return true;
-            //     } else {
-            //       return false;
-            //     }
-            //   });
-            // }
-
+          infoEtiquetas?.map((tag) => {            
             const { etq_nombre, etq_color, etq_id } = tag;
+            const isSelected = isTagSelected(etq_id);
 
             return (
               <div className="tags_wrapper">
                 <div
                   className="tag"
-                  onClick={() => console.log(etq_id)}
+                  onClick={() => handleTagClick(etq_id)}
                   style={{
                     background: etq_color,
                   }}
                 >
-                  <span className="tag_name">{etq_nombre}</span>
-                  {selected &&
-                    selected.length > 0 &&
-                    selected[0].etq_id === tag.etq_id && (
-                      <CheckOutlined color="white" />
-                    )}
+                  <span className="tag_name">{etq_nombre?.toUpperCase()}</span>
+                  {isSelected && <CheckOutlined color="white" />}
+                  
                 </div>
               </div>
             );
@@ -119,9 +90,8 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
           type="primary"
           block
           style={{ marginTop: 10 }}
-          //onClick={editTags}
+          onClick={() => editTags()}
         >
-          {" "}
           Guardar
         </Button>
       </Drawer>
