@@ -4,6 +4,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   PushpinOutlined,
+  TagsOutlined,
 } from "@ant-design/icons";
 import { Badge, Button, Popconfirm } from "antd";
 import moment from "moment";
@@ -12,6 +13,7 @@ import "moment/locale/es"; // Importar el idioma español
 import "./Style.css";
 import { GlobalContext } from "../context/GlobalContext";
 import EditarNota from "../notas/EditarNota";
+import AdministrarTags from "../tags/AdministrarTags";
 
 const NotaItem = ({ note, attached }) => {
   const URL = process.env.REACT_APP_URL;
@@ -19,7 +21,7 @@ const NotaItem = ({ note, attached }) => {
   const { isLoading, setIsLoading } = useContext(GlobalContext);
 
   const [showDrawerEdit, setShowDrawerEdit] = useState(false);
-
+  const [showDrawerTags, setShowDrawerTags] = useState(false);
   moment.locale("es"); // Establecer el idioma en español
 
   const {
@@ -78,6 +80,11 @@ const NotaItem = ({ note, attached }) => {
 
   const onEdit = (id) => {
     setShowDrawerEdit(true);
+    //setNotaID(id)
+  };
+
+  const tags = (id) => {
+    setShowDrawerTags(true);
     //setNotaID(id)
   };
 
@@ -140,7 +147,6 @@ const NotaItem = ({ note, attached }) => {
                   type="link"
                   style={{ padding: 5 }}
                   onClick={() => onEdit(not_id)}
-
                 >
                   <EditOutlined style={{ color: "#56b43c" }} />
                 </Button>
@@ -149,6 +155,19 @@ const NotaItem = ({ note, attached }) => {
                   prioridad={not_importancia}
                   visible={showDrawerEdit}
                   onClose={() => setShowDrawerEdit(false)}
+                />
+                <Button
+                  type="link"
+                  style={{ padding: 5 }}
+                  onClick={() => tags(not_id)}
+                >
+                  <TagsOutlined style={{ color: "#56b43c" }} />
+                </Button>
+                <AdministrarTags
+                  notID={not_id}
+                  prioridad={not_importancia}
+                  visible={showDrawerEdit}
+                  onClose={() => setShowDrawerTags(false)}
                 />
                 <Popconfirm
                   style={{ width: 200 }}
