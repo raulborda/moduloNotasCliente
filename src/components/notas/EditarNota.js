@@ -26,9 +26,9 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
       not_importancia: priority,
     };
 
-    console.log(notID);
-    console.log(dataN.not_desc);
-    console.log(dataN.not_importancia);
+    // console.log(notID);
+    // console.log(dataN.not_desc);
+    // console.log(dataN.not_importancia);
 
     const data = new FormData();
     data.append("idNot", notID);

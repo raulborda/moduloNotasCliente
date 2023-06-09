@@ -164,9 +164,9 @@ const NotaItem = ({ note, attached }) => {
                   <TagsOutlined style={{ color: "#56b43c" }} />
                 </Button>
                 <AdministrarTags
-                  notID={not_id}
+                  notaId={not_id}
                   prioridad={not_importancia}
-                  visible={showDrawerEdit}
+                  visible={showDrawerTags}
                   onClose={() => setShowDrawerTags(false)}
                 />
                 <Popconfirm
