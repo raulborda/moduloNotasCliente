@@ -124,6 +124,9 @@ const NotaItem = ({ note, attached }) => {
             dangerouslySetInnerHTML={{ __html: not_desc }}
           ></div>
           <Fragment>
+            <div style={{position: "absolute", left: 20, bottom: "-0.5rem"}}>
+              <h6>holi</h6>
+            </div>
             {!attached && (
               <div className="note_anchor">
                 <Button

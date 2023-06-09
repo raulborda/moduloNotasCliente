@@ -69,5 +69,11 @@
 	transform: rotate(-45deg);
 }
 
-
+.tags_wrapper_notas {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 20px;
+	flex-wrap: wrap;
+}
 
