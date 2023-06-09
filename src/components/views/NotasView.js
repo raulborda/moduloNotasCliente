@@ -1,13 +1,8 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloseOutlined } from "@ant-design/icons";
 import {
   Button,
-  Card,
-  Col,
   Drawer,
-  Empty,
-  Row,
   Spin,
   Layout,
   Switch,
@@ -18,7 +13,6 @@ import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
-import NotaItem from "../timeline/NotaItem";
 
 const { Header } = Layout;
 
@@ -38,12 +32,8 @@ const NotasView = () => {
     setInfoNotas,
     cliSelect,
     isLoading,
-    setIsLoading,
-    actualizar,
-    setActualizar,
   } = useContext(GlobalContext);
 
-  const [notasFiajadas, setNotasFiajadas] = useState([]);
 
   const [cargando, setCargando] = useState(true);
 
