@@ -3,14 +3,18 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { Button, Drawer } from "antd";
 import React, { useEffect, useState } from "react";
 import "./Style.css"
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
   const URL = process.env.REACT_APP_URL;
 
 
+  const {updateNota,
+    setUpdateNota,} = useContext(GlobalContext);
+
   const [infoEtiquetas, setInfoEtiquetas] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-
 
   useEffect(() => {
     const data = new FormData();
@@ -23,11 +27,24 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
         const data = resp;
         const objetoData = JSON.parse(data);
         setInfoEtiquetas(objetoData);
-        // setNoteBody(objetoData[0].not_desc);
       });
     });
   }, [notaId]);
 
+  useEffect(() => {
+    const data = new FormData();
+    data.append("notId", notaId);
+    fetch(`${URL}buscarEtiquetasxNota.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        const data = resp;
+        const objetoData = JSON.parse(data);
+        setSelectedTags(objetoData.map((tag) => tag.etq_id));
+      });
+    });
+  }, [notaId]);
 
   const handleTagClick = (tagId) => {
     const isSelected = selectedTags.includes(tagId);
@@ -48,9 +65,21 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
 
   const editTags = () => {
     console.log(selectedTags);
+
+    const data = new FormData();
+    data.append("notId", notaId);
+    data.append("tagsE", JSON.stringify(selectedTags));
+    fetch(`${URL}guardarEtiquetaxNota.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        //console.log(resp);
+      });
+    });
+    setUpdateNota(!updateNota)
     onClose();
   }
-
 
   return (
     <>
@@ -66,14 +95,14 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
         }
       >
         {infoEtiquetas &&
-          infoEtiquetas?.map((tag) => {            
+          infoEtiquetas.map((tag) => {
             const { etq_nombre, etq_color, etq_id } = tag;
             const isSelected = isTagSelected(etq_id);
 
             return (
-              <div className="tags_wrapper">
+              <div className="tags_wrapper" key={etq_id}>
                 <div
-                  className="tag"
+                  className={`tag ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleTagClick(etq_id)}
                   style={{
                     background: etq_color,
@@ -81,7 +110,6 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
                 >
                   <span className="tag_name">{etq_nombre?.toUpperCase()}</span>
                   {isSelected && <CheckOutlined color="white" />}
-                  
                 </div>
               </div>
             );
@@ -101,3 +129,4 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
 };
 
 export default AdministrarTags;
+

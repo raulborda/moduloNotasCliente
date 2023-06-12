@@ -26,6 +26,8 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isNewNote, setIsNewNote] = useState(false);
+  
+  const [updateNota, setUpdateNota] = useState(false);
 
   return (
     <GlobalContext.Provider
@@ -48,6 +50,8 @@ function App() {
         setShowDrawerEdit,
         actualizar,
         setActualizar,
+        updateNota,
+        setUpdateNota,
       }}
     >
       <ConfigProvider
