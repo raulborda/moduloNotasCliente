@@ -1,13 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloseOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Drawer,
-  Spin,
-  Layout,
-  Switch,
-  Divider,
-} from "antd";
+import { Button, Drawer, Spin, Layout, Switch, Divider, Select } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
@@ -20,6 +13,7 @@ const NotasView = () => {
   const URL = process.env.REACT_APP_URL;
 
   const [mostrarDestacados, setMostrarDestacados] = useState(false);
+  const [etiquetasSeleccionadas, setEtiquetasSeleccionadas] = useState([]);
 
   const toggleMostrarDestacados = () => {
     setMostrarDestacados(!mostrarDestacados);
@@ -34,8 +28,9 @@ const NotasView = () => {
     isLoading,
   } = useContext(GlobalContext);
 
-
+  const { Option } = Select;
   const [cargando, setCargando] = useState(true);
+  const [etiquetasFiltradas, setEtiquetasFiltradas] = useState([]);
 
   //* BUSCAR NOTAS DEL CLIENTE
   const buscarNotas = () => {
@@ -66,18 +61,47 @@ const NotasView = () => {
     setShowDrawer(!showDrawer);
   };
 
+  useEffect(() => {
+    const data = new FormData();
+    fetch(`${URL}buscarEtiquetas.php`, {
+      method: "POST",
+      body: data,
+    }).then(function (response) {
+      response.text().then((resp) => {
+        const data = resp;
+        const objetoData = JSON.parse(data);
+        setEtiquetasSeleccionadas(objetoData);
+      });
+    });
+  }, []);
+
   return (
     <>
       <Header style={{ backgroundColor: "#ffff" }}>
         <div className="encabezado">
           <div className="encabezado__texto">NOTAS</div>
           <div className="encabezado_extra">
+            <div style={{ marginRight: "10px", maxHeight: "50px" }}>
+              <Select
+                mode="multiple"
+                placeholder="Filtrar por etiquetas"
+                style={{ width: "230px", marginBottom: "10px", zIndex: "9999" }}
+                value={etiquetasFiltradas}
+                onChange={setEtiquetasFiltradas}
+              >                
+                {etiquetasSeleccionadas.map((etiqueta) => (
+                  <Option key={etiqueta.etq_id} value={etiqueta.etq_id}>
+                    {etiqueta.etq_nombre}
+                  </Option>
+                ))}
+              </Select>
+            </div>
             <div className="encabezado__label">
-            {!mostrarDestacados ? (
-              <label>Ver Destacados</label>
-            ):(
-              <label>Ver General</label>
-            )}  
+              {!mostrarDestacados ? (
+                <label>Ver Destacados</label>
+              ) : (
+                <label>Ver General</label>
+              )}
             </div>
             <div className="encabezado__switch">
               <Switch
@@ -112,18 +136,18 @@ const NotasView = () => {
             <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
           )}
           <Drawer
-          visible={showDrawer}
-          onClose={() => setShowDrawer(false)}
-          title={"Nueva Nota"}
-          width={500}
-          closeIcon={
-            <CloseOutlined
-              style={{ position: "absolute", top: "18px", right: "10px" }}
-            />
-          }
-        >
-          <NuevaNota />
-        </Drawer>
+            visible={showDrawer}
+            onClose={() => setShowDrawer(false)}
+            title={"Nueva Nota"}
+            width={500}
+            closeIcon={
+              <CloseOutlined
+                style={{ position: "absolute", top: "18px", right: "10px" }}
+              />
+            }
+          >
+            <NuevaNota />
+          </Drawer>
         </div>
       ) : (
         <div className="historial_wrapper">
@@ -143,21 +167,21 @@ const NotasView = () => {
             <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
           )}
           <Drawer
-          visible={showDrawer}
-          onClose={() => setShowDrawer(false)}
-          title={"Nueva Nota"}
-          width={500}
-          closeIcon={
-            <CloseOutlined
-              style={{ position: "absolute", top: "18px", right: "10px" }}
-            />
-          }
-        >
-          <NuevaNota />
-        </Drawer>
+            visible={showDrawer}
+            onClose={() => setShowDrawer(false)}
+            title={"Nueva Nota"}
+            width={500}
+            closeIcon={
+              <CloseOutlined
+                style={{ position: "absolute", top: "18px", right: "10px" }}
+              />
+            }
+          >
+            <NuevaNota />
+          </Drawer>
         </div>
       )}
-       {/*<div className="wrapper_Cards">
+      {/*<div className="wrapper_Cards">
         <Col xs={24} md={17}>
           <Row>
             <Col xs={24}>
@@ -230,7 +254,6 @@ const NotasView = () => {
           <NuevaNota />
         </Drawer>
       </div>*/}
-        
     </>
   );
 };
