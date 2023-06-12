@@ -133,7 +133,7 @@ const NotasView = () => {
             <div style={{ marginRight: "10px", maxHeight: "50px" }}>
               <Input
                 placeholder="Filtrar por descripción"
-                style={{ width: "230px", marginBottom: "10px", zIndex: "9999" }}
+                style={{ width: "230px", marginBottom: "10px" }}
                 value={textoFiltrado}
                 onChange={(e) => setTextoFiltrado(e.target.value)}
               />
@@ -142,7 +142,7 @@ const NotasView = () => {
               <Select
                 mode="multiple"
                 placeholder="Filtrar por etiquetas"
-                style={{ width: "230px", marginBottom: "10px", zIndex: "9999" }}
+                style={{ width: "230px", marginBottom: "10px", zIndex: "99" }}
                 value={etiquetasFiltradas}
                 onChange={setEtiquetasFiltradas}
               >
@@ -251,6 +251,7 @@ const NotasView = () => {
                 style={{ position: "absolute", top: "18px", right: "10px" }}
               />
             }
+            style={{zIndex:"999"}}
           >
             <NuevaNota />
           </Drawer>
