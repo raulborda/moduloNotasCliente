@@ -75,6 +75,26 @@ const NotasView = () => {
     });
   }, []);
 
+  const filtrarNotas = () => {
+    if (etiquetasFiltradas.length === 0) {
+      // No hay etiquetas seleccionadas, mostrar todas las notas
+      return infoNotas;
+    } else {
+      // Filtrar las notas según las etiquetas seleccionadas
+      return infoNotas.filter((nota) => {
+        if (nota.exn) {
+          const etiquetas = nota.exn.split(",");
+          return etiquetas.some((etiqueta) =>
+            etiquetasFiltradas.includes(etiqueta)
+          );
+        } else {
+          return false;
+        }
+      });
+    }
+  };
+
+  //console.log(etiquetasFiltradas.length);
   return (
     <>
       <Header style={{ backgroundColor: "#ffff" }}>
@@ -88,7 +108,7 @@ const NotasView = () => {
                 style={{ width: "230px", marginBottom: "10px", zIndex: "9999" }}
                 value={etiquetasFiltradas}
                 onChange={setEtiquetasFiltradas}
-              >                
+              >
                 {etiquetasSeleccionadas.map((etiqueta) => (
                   <Option key={etiqueta.etq_id} value={etiqueta.etq_id}>
                     {etiqueta.etq_nombre}
@@ -119,6 +139,80 @@ const NotasView = () => {
       </Header>
       <Divider style={{ marginBottom: "10px", marginTop: "-8px" }} />
       {!mostrarDestacados ? (
+        <div className="historial_wrapper">
+          {isLoading || cargando ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                // marginTop: "10%",
+              }}
+            >
+              <Spin size="large" />
+            </div>
+          ) : (
+            // <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
+            <>
+              {etiquetasFiltradas.length === 0 ? (
+                // No hay etiquetas seleccionadas, mostrar todas las notas
+                <TimelineNotas notes={infoNotas} card="general" />
+              ) : (
+                // Filtrar las notas según las etiquetas seleccionadas
+                <TimelineNotas notes={filtrarNotas()} card="filtradas" />
+              )}
+            </>
+          )}
+          <Drawer
+            visible={showDrawer}
+            onClose={() => setShowDrawer(false)}
+            title={"Nueva Nota"}
+            width={500}
+            closeIcon={
+              <CloseOutlined
+                style={{ position: "absolute", top: "18px", right: "10px" }}
+              />
+            }
+          >
+            <NuevaNota />
+          </Drawer>
+        </div>
+      ) : (
+        <div className="historial_wrapper">
+          {isLoading || cargando ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                // marginTop: "10%",
+              }}
+            >
+              <Spin size="large" />
+            </div>
+          ) : (
+            <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
+          )}
+          <Drawer
+            visible={showDrawer}
+            onClose={() => setShowDrawer(false)}
+            title={"Nueva Nota"}
+            width={500}
+            closeIcon={
+              <CloseOutlined
+                style={{ position: "absolute", top: "18px", right: "10px" }}
+              />
+            }
+          >
+            <NuevaNota />
+          </Drawer>
+        </div>
+      )}
+
+      
+      {/* {!mostrarDestacados ? (
         <div className="historial_wrapper">
           {isLoading || cargando ? (
             <div
@@ -180,8 +274,10 @@ const NotasView = () => {
             <NuevaNota />
           </Drawer>
         </div>
-      )}
-      {/*<div className="wrapper_Cards">
+      )}   */}
+      
+
+      {/* <div className="wrapper_Cards">
         <Col xs={24} md={17}>
           <Row>
             <Col xs={24}>
@@ -253,7 +349,7 @@ const NotasView = () => {
         >
           <NuevaNota />
         </Drawer>
-      </div>*/}
+      </div> */}
     </>
   );
 };
