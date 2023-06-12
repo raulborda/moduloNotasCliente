@@ -26,6 +26,7 @@ const NotasView = () => {
     setInfoNotas,
     cliSelect,
     isLoading,
+    updateNota,
   } = useContext(GlobalContext);
 
   const { Option } = Select;
@@ -55,7 +56,7 @@ const NotasView = () => {
 
   useEffect(() => {
     buscarNotas();
-  }, [cliSelect, isLoading]);
+  }, [cliSelect, isLoading, updateNota]);
 
   const newNota = () => {
     setShowDrawer(!showDrawer);
@@ -193,7 +194,16 @@ const NotasView = () => {
               <Spin size="large" />
             </div>
           ) : (
-            <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
+            // <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
+            <>
+              {etiquetasFiltradas.length === 0 ? (
+                // No hay etiquetas seleccionadas, mostrar todas las notas
+                <TimelineNotas notes={infoNotas} card="destacado" />
+              ) : (
+                // Filtrar las notas según las etiquetas seleccionadas
+                <TimelineNotas notes={filtrarNotas()} card="filtradas" />
+              )}
+            </>
           )}
           <Drawer
             visible={showDrawer}
@@ -211,7 +221,6 @@ const NotasView = () => {
         </div>
       )}
 
-      
       {/* {!mostrarDestacados ? (
         <div className="historial_wrapper">
           {isLoading || cargando ? (
@@ -275,7 +284,6 @@ const NotasView = () => {
           </Drawer>
         </div>
       )}   */}
-      
 
       {/* <div className="wrapper_Cards">
         <Col xs={24} md={17}>
