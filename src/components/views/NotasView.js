@@ -1,11 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Drawer, Spin, Layout, Switch, Divider, Select, Input } from "antd";
+import {
+  Button,
+  Drawer,
+  Spin,
+  Layout,
+  Switch,
+  Divider,
+  Select,
+  Input,
+  DatePicker,
+} from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
+import moment from "moment";
 
 const { Header } = Layout;
 
@@ -15,6 +26,8 @@ const NotasView = () => {
   const [mostrarDestacados, setMostrarDestacados] = useState(false);
   const [etiquetasSeleccionadas, setEtiquetasSeleccionadas] = useState([]);
   const [textoFiltrado, setTextoFiltrado] = useState("");
+  const [fechaDesde, setFechaDesde] = useState(null);
+  const [fechaHasta, setFechaHasta] = useState(null);
 
   const toggleMostrarDestacados = () => {
     setMostrarDestacados(!mostrarDestacados);
@@ -53,7 +66,7 @@ const NotasView = () => {
     });
   };
 
-  //console.log(infoNotas);
+  console.log(infoNotas);
 
   useEffect(() => {
     buscarNotas();
@@ -91,27 +104,60 @@ const NotasView = () => {
           return false;
         }
       }
-  
+
       // Filtrar por descripción
       if (textoFiltrado !== "") {
-        if (!nota.not_desc.toLowerCase().includes(textoFiltrado.toLowerCase())) {
+        if (
+          !nota.not_desc.toLowerCase().includes(textoFiltrado.toLowerCase())
+        ) {
           // La descripción de la nota no contiene el texto de filtro, excluir la nota
           return false;
         }
       }
+
+      if (fechaDesde && fechaHasta) {
+        const fechaNota = new Date(nota.not_fechahora).setHours(0, 0, 0, 0);
+        const fechaDesdeSeleccionada = new Date(fechaDesde);
+        const fechaHastaSeleccionada = new Date(fechaHasta);
   
+        console.log("Fecha de la nota:", fechaNota);
+        console.log("Fecha desde:", fechaDesdeSeleccionada);
+        console.log("Fecha hasta:", fechaHastaSeleccionada);
+  
+        if (fechaNota < fechaDesdeSeleccionada.setHours(0, 0, 0, 0) || fechaNota > fechaHastaSeleccionada.setHours(23, 59, 59, 999)) {
+          // La fecha de la nota está fuera del rango seleccionado, excluir la nota
+          return false;
+        }
+        
+      }
+
       return true; // Incluir la nota en el resultado final
     });
   };
+
+
+  
   
 
-  //console.log(etiquetasFiltradas.length);
   return (
     <>
       <Header style={{ backgroundColor: "#ffff" }}>
         <div className="encabezado">
           <div className="encabezado__texto">NOTAS</div>
           <div className="encabezado_extra">
+            <div style={{ marginRight: "10px", maxHeight: "50px" }}>
+              <DatePicker
+                placeholder="Fecha desde"
+                style={{ marginRight: "10px" }}
+                value={fechaDesde}
+                onChange={setFechaDesde}
+              />
+              <DatePicker
+                placeholder="Fecha hasta"
+                value={fechaHasta}
+                onChange={setFechaHasta}
+              />
+            </div>
             <div style={{ marginRight: "10px", maxHeight: "50px" }}>
               <Input
                 placeholder="Filtrar por descripción"
@@ -174,7 +220,7 @@ const NotasView = () => {
           ) : (
             // <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
             <>
-              {etiquetasFiltradas.length === 0 && textoFiltrado === "" ? (
+              {etiquetasFiltradas.length === 0 && textoFiltrado === "" && !fechaDesde && !fechaHasta ? (
                 // No hay etiquetas seleccionadas, mostrar todas las notas
                 <TimelineNotas notes={infoNotas} card="general" />
               ) : (
@@ -214,7 +260,7 @@ const NotasView = () => {
           ) : (
             // <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
             <>
-              {etiquetasFiltradas.length === 0 && textoFiltrado === "" ? (
+              {etiquetasFiltradas.length === 0 && textoFiltrado === "" && !fechaDesde && !fechaHasta ? (
                 // No hay etiquetas seleccionadas, mostrar todas las notas
                 <TimelineNotas notes={infoNotas} card="destacado" />
               ) : (
@@ -233,13 +279,14 @@ const NotasView = () => {
                 style={{ position: "absolute", top: "18px", right: "10px" }}
               />
             }
-            style={{zIndex:"999"}}
+            style={{ zIndex: "999" }}
           >
             <NuevaNota />
           </Drawer>
         </div>
       )}
 
+     
       {/* {!mostrarDestacados ? (
         <div className="historial_wrapper">
           {isLoading || cargando ? (
@@ -302,7 +349,8 @@ const NotasView = () => {
             <NuevaNota />
           </Drawer>
         </div>
-      )}   */}
+      )}    */}
+      
 
       {/* <div className="wrapper_Cards">
         <Col xs={24} md={17}>
