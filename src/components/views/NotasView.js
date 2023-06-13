@@ -53,7 +53,7 @@ const NotasView = () => {
     });
   };
 
-  console.log(infoNotas);
+  //console.log(infoNotas);
 
   useEffect(() => {
     buscarNotas();
@@ -77,30 +77,12 @@ const NotasView = () => {
     });
   }, []);
 
-  // const filtrarNotas = () => {
-  //   if (etiquetasFiltradas.length === 0) {
-  //     // No hay etiquetas seleccionadas, mostrar todas las notas
-  //     return infoNotas;
-  //   } else {
-  //     // Filtrar las notas según las etiquetas seleccionadas
-  //     return infoNotas.filter((nota) => {
-  //       if (nota.exn) {
-  //         const etiquetas = nota.exn.split(",");
-  //         return etiquetas.some((etiqueta) =>
-  //           etiquetasFiltradas.includes(etiqueta)
-  //         );
-  //       } else {
-  //         return false;
-  //       }
-  //     });
-  //   }
-  // };
-
   const filtrarNotas = () => {
     return infoNotas.filter((nota) => {
       // Filtrar por etiquetas
       if (etiquetasFiltradas.length > 0) {
-        const etiquetasNota = nota.exn.split(",");
+        // const etiquetasNota = nota.exn.split(",");
+        const etiquetasNota = nota.exn ? nota.exn.split(",") : [];
         const interseccion = etiquetasNota.filter((etiqueta) =>
           etiquetasFiltradas.includes(etiqueta)
         );
@@ -148,7 +130,7 @@ const NotasView = () => {
               >
                 {etiquetasSeleccionadas.map((etiqueta) => (
                   <Option key={etiqueta.etq_id} value={etiqueta.etq_id}>
-                    {etiqueta.etq_nombre}
+                    {etiqueta.etq_nombre.toUpperCase()}
                   </Option>
                 ))}
               </Select>

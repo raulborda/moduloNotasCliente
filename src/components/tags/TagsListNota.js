@@ -26,11 +26,15 @@ const TagsListNota = ({ notaId }) => {
     <>
       <div className="selected_tags">
         {infoColorEtiquetas?.map((tag) => (
-          <div
-            className="selected_tag"
-            style={{ background: tag.etq_color }}
-            key={tag.etq_id}
-          ></div>
+          <>
+            <div
+              className="selected_tag"
+              style={{ background: tag.etq_color, display: 'inline-block' }}
+              key={tag.etq_id}
+            >
+              <span className="etq_name">{tag.etq_nombre.toUpperCase()}</span>              
+            </div>
+          </>
         ))}
       </div>
     </>
