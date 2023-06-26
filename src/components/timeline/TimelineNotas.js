@@ -7,7 +7,7 @@ import NotaItem from "./NotaItem";
 const TimelineNotas = ({ notes, card }) => {
   const filteredNotes = notes.filter((note) => {
     if (card === "general") {
-      return note.not_anclado !== "1";
+      return note
     } else if (card === "destacado") {
       return note.not_anclado !== "0";
     }

@@ -16,7 +16,6 @@ import "./Style.css";
 import NuevaNota from "../notas/NuevaNota";
 import { GlobalContext } from "../context/GlobalContext";
 import TimelineNotas from "../timeline/TimelineNotas";
-import moment from "moment";
 
 const { Header } = Layout;
 
@@ -185,7 +184,7 @@ const NotasView = () => {
               {!mostrarDestacados ? (
                 <label>Ver Destacados</label>
               ) : (
-                <label>Ver General</label>
+                <label>Ver Todas</label>
               )}
             </div>
             <div className="encabezado__switch">
