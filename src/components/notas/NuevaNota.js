@@ -30,10 +30,10 @@ const NuevaNota = () => {
       not_importancia: priority,
     };
 
-    console.log(dataN.not_desc);
-    console.log(dataN.not_importancia);
-    console.log(idUsu);
-    console.log(cliSelect);
+    //console.log(dataN.not_desc);
+    //console.log(dataN.not_importancia);
+    //console.log(idUsu);
+    //console.log(cliSelect);
 
     const data = new FormData();
     data.append("idUsu", idUsu);

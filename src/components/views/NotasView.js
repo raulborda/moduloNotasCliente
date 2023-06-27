@@ -65,7 +65,7 @@ const NotasView = () => {
     });
   };
 
-  console.log(infoNotas);
+  //console.log(infoNotas);
 
   useEffect(() => {
     buscarNotas();
@@ -119,9 +119,9 @@ const NotasView = () => {
         const fechaDesdeSeleccionada = new Date(fechaDesde);
         const fechaHastaSeleccionada = new Date(fechaHasta);
   
-        console.log("Fecha de la nota:", fechaNota);
-        console.log("Fecha desde:", fechaDesdeSeleccionada);
-        console.log("Fecha hasta:", fechaHastaSeleccionada);
+        //console.log("Fecha de la nota:", fechaNota);
+        //console.log("Fecha desde:", fechaDesdeSeleccionada);
+        //console.log("Fecha hasta:", fechaHastaSeleccionada);
   
         if (fechaNota < fechaDesdeSeleccionada.setHours(0, 0, 0, 0) || fechaNota > fechaHastaSeleccionada.setHours(23, 59, 59, 999)) {
           // La fecha de la nota está fuera del rango seleccionado, excluir la nota

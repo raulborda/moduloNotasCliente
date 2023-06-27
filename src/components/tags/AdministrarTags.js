@@ -64,7 +64,7 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
   };
 
   const editTags = () => {
-    console.log(selectedTags);
+    //console.log(selectedTags);
 
     const data = new FormData();
     data.append("notId", notaId);

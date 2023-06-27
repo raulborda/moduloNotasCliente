@@ -71,12 +71,12 @@ const NotaItem = ({ note, attached }) => {
     }).then(function (response) {
       response.text().then((resp) => {
         const data = resp;
-        console.log(data);
+        //console.log(data);
         setIsLoading(false);
       });
     });
 
-    console.log("fijado: ", id, estado);
+    //console.log("fijado: ", id, estado);
   };
 
   const onEdit = (id) => {
@@ -99,7 +99,7 @@ const NotaItem = ({ note, attached }) => {
     }).then(function (response) {
       response.text().then((resp) => {
         const data = resp;
-        console.log(data);
+        //console.log(data);
         setIsLoading(false);
       });
     });
