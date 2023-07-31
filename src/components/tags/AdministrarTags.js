@@ -84,15 +84,16 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
   return (
     <>
       <Drawer
-        visible={visible}
+        open={visible}
         onClose={() => onClose()}
         title={"Administrar Etiquetas"}
         width={320}
-        closeIcon={
-          <CloseOutlined
-            style={{ position: "absolute", top: "18px", right: "10px" }}
-          />
-        }
+        closable={true}
+        // closeIcon={
+        //   <CloseOutlined
+        //     style={{ position: "absolute", top: "18px", right: "10px" }}
+        //   />
+        // }
       >
         {infoEtiquetas &&
           infoEtiquetas.map((tag) => {
@@ -118,7 +119,7 @@ const AdministrarTags = ({ notaId, prioridad, visible, onClose }) => {
         <Button
           type="primary"
           block
-          style={{ marginTop: 10 }}
+          style={{ marginTop: 10, borderRadius:"0px" }}
           onClick={() => editTags()}
         >
           Guardar

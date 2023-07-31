@@ -87,7 +87,7 @@ const NuevaNota = () => {
               </Form.Item>
             </div>
             <div className="layout-footer">
-              <Button type="primary" htmlType="submit" block>
+              <Button type="primary" style={{borderRadius:"0px"}} htmlType="submit" block>
                 Guardar
               </Button>
             </div>

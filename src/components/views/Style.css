@@ -62,3 +62,16 @@
   flex-direction: column;
   margin-top: 1rem;
 }
+
+
+.ant-input{
+  border-radius: 0px !important;
+}
+
+.ant-select-selector{
+  border-radius: 0px !important;
+}
+
+.ant-picker{
+  border-radius: 0px !important;
+}

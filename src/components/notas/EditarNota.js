@@ -54,15 +54,16 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
   return (
     <>
       <Drawer
-        visible={visible}
+        open={visible}
         onClose={() => onClose()}
         title={"Editar Nota"}
         width={500}
-        closeIcon={
-          <CloseOutlined
-            style={{ position: "absolute", top: "18px", right: "10px" }}
-          />
-        }
+        closable={true}
+        // closeIcon={
+        //   <CloseOutlined
+        //     style={{ position: "absolute", top: "18px", right: "10px" }}
+        //   />
+        // }
       >
         <div>
           <Form
@@ -97,7 +98,7 @@ const EditarNota = ({ notID, prioridad, visible, onClose }) => {
                 </Form.Item>
               </div>
               <div className="layout-footer">
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" style={{borderRadius:"0px"}} htmlType="submit" block>
                   Guardar
                 </Button>
               </div>

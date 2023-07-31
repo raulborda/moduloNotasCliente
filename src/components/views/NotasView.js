@@ -194,8 +194,8 @@ const NotasView = () => {
               />
             </div>
             <div>
-              <Button type="primary" onClick={newNota}>
-                <span style={{ fontWeight: "bold" }}>Nueva Nota</span>
+              <Button type="primary" style={{borderRadius:"0px"}} onClick={newNota}>
+                <span style={{ fontWeight: "500" }}>Nueva Nota</span>
               </Button>
             </div>
           </div>
@@ -229,15 +229,16 @@ const NotasView = () => {
             </>
           )}
           <Drawer
-            visible={showDrawer}
+            open={showDrawer}
+            closable={true}
             onClose={() => setShowDrawer(false)}
             title={"Nueva Nota"}
             width={500}
-            closeIcon={
-              <CloseOutlined
-                style={{ position: "absolute", top: "18px", right: "10px" }}
-              />
-            }
+            // closeIcon={
+            //   <CloseOutlined
+            //     style={{ position: "absolute", top: "18px", right: "10px" }}
+            //   />
+            // }
           >
             <NuevaNota />
           </Drawer>
