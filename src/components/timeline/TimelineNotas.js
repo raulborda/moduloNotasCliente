@@ -19,33 +19,12 @@ const TimelineNotas = ({ notes, card }) => {
       {filteredNotes && filteredNotes.length > 0 ? (
         <div
           style={{
-            height: "500px",
-            width: "99%",
-            overflowY: "scroll",
+            height: "100%",
+            width: "100%",
+            boxSizing: "border-box",
             padding: "15px",
           }}
         >
-          <style>
-            {`
-            ::-webkit-scrollbar {
-              width: 8px;
-            }
-
-            ::-webkit-scrollbar-track {
-              background-color: #f5f5f5;
-              border-radius: 4px;
-            }
-
-            ::-webkit-scrollbar-thumb {
-              background-color: #e8e8e8;
-              border-radius: 4px;
-            }
-
-            ::-webkit-scrollbar-thumb:hover {
-              background-color: #e5e5e5;
-            }
-          `}
-          </style>
           <TL>
             {filteredNotes.map((note) => (
               <TL.Item

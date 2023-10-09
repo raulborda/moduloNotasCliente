@@ -201,7 +201,7 @@ const NotasView = () => {
           </div>
         </div>
       </Header>
-      <Divider style={{ marginBottom: "10px", marginTop: "-8px" }} />
+      {/* <Divider style={{ marginBottom: "10px", marginTop: "-8px" }} /> */}
       {!mostrarDestacados ? (
         <div className="historial_wrapper">
           {isLoading || cargando ? (
@@ -217,7 +217,6 @@ const NotasView = () => {
               <Spin size="large" />
             </div>
           ) : (
-            // <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
             <>
               {etiquetasFiltradas.length === 0 && textoFiltrado === "" && !fechaDesde && !fechaHasta ? (
                 // No hay etiquetas seleccionadas, mostrar todas las notas
@@ -252,13 +251,11 @@ const NotasView = () => {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                // marginTop: "10%",
               }}
             >
               <Spin size="large" />
             </div>
           ) : (
-            // <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
             <>
               {etiquetasFiltradas.length === 0 && textoFiltrado === "" && !fechaDesde && !fechaHasta ? (
                 // No hay etiquetas seleccionadas, mostrar todas las notas
@@ -285,146 +282,6 @@ const NotasView = () => {
           </Drawer>
         </div>
       )}
-
-     
-      {/* {!mostrarDestacados ? (
-        <div className="historial_wrapper">
-          {isLoading || cargando ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                // marginTop: "10%",
-              }}
-            >
-              <Spin size="large" />
-            </div>
-          ) : (
-            <TimelineNotas notes={infoNotas} card="general"></TimelineNotas>
-          )}
-          <Drawer
-            visible={showDrawer}
-            onClose={() => setShowDrawer(false)}
-            title={"Nueva Nota"}
-            width={500}
-            closeIcon={
-              <CloseOutlined
-                style={{ position: "absolute", top: "18px", right: "10px" }}
-              />
-            }
-          >
-            <NuevaNota />
-          </Drawer>
-        </div>
-      ) : (
-        <div className="historial_wrapper">
-          {isLoading || cargando ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                // marginTop: "10%",
-              }}
-            >
-              <Spin size="large" />
-            </div>
-          ) : (
-            <TimelineNotas notes={infoNotas} card="destacado"></TimelineNotas>
-          )}
-          <Drawer
-            visible={showDrawer}
-            onClose={() => setShowDrawer(false)}
-            title={"Nueva Nota"}
-            width={500}
-            closeIcon={
-              <CloseOutlined
-                style={{ position: "absolute", top: "18px", right: "10px" }}
-              />
-            }
-          >
-            <NuevaNota />
-          </Drawer>
-        </div>
-      )}    */}
-      
-
-      {/* <div className="wrapper_Cards">
-        <Col xs={24} md={17}>
-          <Row>
-            <Col xs={24}>
-              <Card
-                title="DESTACADO"
-                className="card_Destacado"
-                extra={
-                  <Button type="primary" onClick={newNota}>
-                    <span style={{ fontWeight: "bold" }}>Nueva Nota</span>
-                  </Button>
-                }
-              >
-                {isLoading || cargando ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      // marginTop: "10%",
-                    }}
-                  >
-                    <Spin size="large" />
-                  </div>
-                ) : (
-                  <TimelineNotas
-                    notes={infoNotas}
-                    card="destacado"
-                  ></TimelineNotas>
-                )}
-              </Card>
-              <Col xs={24}>
-                <div className="historial_wrapper">
-                  <Card title="GENERAL">
-                    {isLoading || cargando ? (
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          // marginTop: "10%",
-                        }}
-                      >
-                        <Spin size="large" />
-                      </div>
-                    ) : (
-                      <TimelineNotas
-                        notes={infoNotas}
-                        card="general"
-                      ></TimelineNotas>
-                    )}
-                  </Card>
-                </div>
-              </Col>
-            </Col>
-          </Row>
-        </Col> 
-        <Drawer
-          visible={showDrawer}
-          onClose={() => setShowDrawer(false)}
-          title={"Nueva Nota"}
-          width={500}
-          closeIcon={
-            <CloseOutlined
-              style={{ position: "absolute", top: "18px", right: "10px" }}
-            />
-          }
-        >
-          <NuevaNota />
-        </Drawer>
-      </div> */}
     </>
   );
 };
